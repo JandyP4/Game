@@ -18,7 +18,7 @@ public class Main {
 	
 	 //Barbarian
 	static int ranhpBar;
-	static int hpBar;
+	static int hpBar = 0;
 	
 	
 	//Knight
@@ -29,9 +29,10 @@ public class Main {
 	//for random attack
 	static int setfite;
 	//For Player
+	final static int maxPlayHp = 15;
 	int playHp = 15;
 	int playChoice;
-	
+	int potionCount = 3;
 	
 	
 	//Player
@@ -66,19 +67,32 @@ public class Main {
 			
 			if (playAtt.equalsIgnoreCase("parry")) {
 				
-				System.out.println("You decide to jump out of the way of a possible oncoming attack.");
+				System.out.println("You bring up your sword ready to counter.");
 				playChoice = 3;
 				break;
 			}
 			
-			if (playAtt.equalsIgnoreCase("hp")) {
-				System.out.println("Your current hp is " + playHp + ". Now, What would you like to do?");
+			
+			
+			
+			if(playAtt.equalsIgnoreCase("Potion") && potionCount > 0) {
 				
+				
+				playHp = playHp + 5; 
+				System.out.println("You decide to quickly use a potion and heal 5 hp.");
+				playChoice = 5;
+				break;
+					
 			}
 			
+			if(playAtt.equalsIgnoreCase("Potion") && potionCount <= 0) {
+				System.out.println("You do not have any potions!");
+			}
 			
-			
-			
+			if (playAtt.equalsIgnoreCase("hp")) {
+				System.out.println("Your current hp is " + playHp + ". Now, What would you like to do?");
+				 
+			}
 			
 			
 			else {
@@ -111,8 +125,9 @@ public class Main {
 	//Barbarian
 	static void enemyBar() {
 		
-		ranhpBar = ((int )(Math.random() * 25 + 10));
-		hpBar = ranhpBar;
+		
+		
+		ranhpBar = hpBar ;
 		
 		ranFite();
 		//Attack
@@ -151,35 +166,40 @@ public class Main {
 		
 		
 		if (playChoice == 1 && fightEnemy == 1){
-			 System.out.println("You and the Barbarian both deal extream blows to each other. Both take 2 damage. The barbarian has " + hpBar +" Hp remaining.");
 			 playHp = playHp - 2;
 			 hpBar = hpBar - 2;				
+			System.out.println("You and the Barbarian both deal extream blows to each other. Both take 2 damage. The barbarian has " + hpBar +" Hp remaining.");
 		}
 		
 		if (playChoice == 1 && fightEnemy == 2){
-			System.out.println("The Barbarian braces and absorb most of your attack. The barbarian takes 1 damage. The barbarian has " + hpBar +" Hp remaining.");
 			hpBar = hpBar - 1;
+			System.out.println("The Barbarian braces and absorb most of your attack. The barbarian takes 1 damage. The barbarian has " + hpBar +" Hp remaining.");
+			
 				
 		}
 		
 		if (playChoice == 1 && fightEnemy == 3){
-			System.out.println("The barbarian knocks your sword away and is able to land a blow. You take 2 damage.");
 			playHp = playHp - 2;
+			System.out.println("The barbarian knocks your sword away and is able to land a blow. You take 2 damage.");
+			
 			 	
 		}
 		
 		if (playChoice == 1 && fightEnemy == 4){
+			hpBar = hpBar - 3;
 			System.out.println("Seeing your chance to strike. Making the most of it. Dealing 3 damage to the Barbarian. The barbarian has " + hpBar +" Hp remaining.");
-			hpBar = hpBar - 3;	
+				
 		}
 		
 		if (playChoice == 2 && fightEnemy == 1){
-			System.out.println("You lift your shield, though the powerful strike of the barbarian breaks through. You take 1 damage.");
 			playHp = playHp - 1;
+			System.out.println("You lift your shield, though the powerful strike of the barbarian breaks through. You take 1 damage.");
+			
 			 
 		}
 		
 		if (playChoice == 2 && fightEnemy == 2){
+			
 			System.out.println("You both prepair for an attack, yet no one strikes. No damage is taken.");
 			
 		}
@@ -195,9 +215,10 @@ public class Main {
 		}
 		
 		if (playChoice == 3 && fightEnemy == 1){
-			 System.out.println("You are able to use the barbarians momentum against him. Dealing 2 damage to the barbariian. The barbarian has " + hpBar + " Hp remaining.");
+			 hpBar = hpBar - 2; 
+			System.out.println("You are able to use the barbarians momentum against him. Dealing 2 damage to the barbariian. The barbarian has " + hpBar + " Hp remaining.");
 			
-			 hpBar = hpBar - 2;	
+				
 		}
 		
 		if (playChoice == 3 && fightEnemy == 2){
@@ -206,19 +227,22 @@ public class Main {
 		}
 		
 		if (playChoice == 3 && fightEnemy == 3){
-			System.out.println("You and the Barbarian, both atempt to warp off anothers attack. You and the barbarian both take 1 damage. The barbarian has " + hpBar +" Hp remaining.");
 			playHp = playHp - 1;
 			hpBar = hpBar - 1;
+			System.out.println("You and the Barbarian, both atempt to warp off anothers attack. You and the barbarian both take 1 damage. The barbarian has " + hpBar +" Hp remaining.");
+			
 		}
 		
 		if (playChoice == 3 && fightEnemy == 4){
+			 hpBar = hpBar - 2;
 			System.out.println("You see your opurtunity and are able to get a blow off. Dealing 2 damage to the barbarian. The barbarian has " + hpBar +" Hp remaining.");
-			 hpBar = hpBar - 2;	
+				
 		}
 		
 		if (playChoice == 4 && fightEnemy == 1){
-			System.out.println("The barbarian does not show mercy and deals a heavy attack. You take 3 damage.");
 			playHp = playHp - 3;
+			System.out.println("The barbarian does not show mercy and deals a heavy attack. You take 3 damage.");
+			
 		}
 		
 		if (playChoice == 4 && fightEnemy == 2){
@@ -227,23 +251,65 @@ public class Main {
 		}
 		
 		if (playChoice == 4 && fightEnemy == 3){
-			System.out.println("The barbarian readys to ward off an attack, yet sees his oppurtunity and strikes. You take 2 damage.");
 			playHp = playHp - 2;
+			System.out.println("The barbarian readys to ward off an attack, yet sees his oppurtunity and strikes. You take 2 damage.");
+			
 		}
 		
 		if (playChoice == 4 && fightEnemy == 4){
 			System.out.println("You and your enemy kinda just look at each other... Awkward.");
 			
 		}
+		
+		if (playChoice == 5 && fightEnemy == 1){
+			playHp = playHp - 2;
+			System.out.println("After using a potion the barbarian strikes you. You take 2 damage.");
+			
+		}
+		
+		if (playChoice == 5 && fightEnemy == 2){
+			System.out.println("The barbarian atempts to block an attack even though you used a potion. No damage taken.");
+			
+		}
+		
+		if (playChoice == 5 && fightEnemy == 3){
+			playHp = playHp - 2;
+			System.out.println("The barbarian readys to ward off an attack, although you decided to use a potion. No damage taken.");
+			
+		}
+		
+		if (playChoice == 5 && fightEnemy == 4){
+			System.out.println("You are too busy drinking a potion to take advantage of the situation at hand. No damage taken.");
+			
+		}
+		
+		
 	}
 
-	
-	
-	
+	public void tutorialFight() {
+			
+		
+		while (true) {
+		playFight();
+		enemyBar();	
+		playTurnBar();
+		
+			if(playHp <= 0) {
+				System.out.println("Your hp has reached 0. You have faced a terrible fate. Lets give it another shot. Type \"continue\" to try again.");
+				break;
+			}
+		
+			if(hpBar <= 0) {
+				System.out.println("The barbarian falls defeated. Congratulations! You have defeated your first enemy.");
+				break;
+			}
+		
+		
+		}
+		
+	}
 	
 
-	
-	
 	public Main() {
 		
 		
@@ -300,29 +366,11 @@ public class Main {
 		
 		System.out.println("Okay " + charName +" its time to make a battle descicion! Would you like to Slice, Block, or Parry?");
 		
-		while (true) {
-		playFight();
-		enemyBar();	
-		playTurnBar();
-		
-			if(playHp <= 0) {
-				System.out.println("You have faced a terrible fate. Lets give it another shot.");
-				break;
-			}
-		
-			if(hpBar <= 0) {
-				System.out.println("The barbarian falls defeated. Congratulations! You have defeated your first enemy.");
-				break;
-			}
 		
 		
-		}
-		
-		
-		
-		
-		
-		
+		ranhpBar = ((int )(Math.random() * 25 + 10));
+		hpBar = ranhpBar;
+		tutorialFight();
 		
 		
 		
@@ -335,6 +383,9 @@ public class Main {
 
 
 	
+	
+
+
 	public String getplayAtt() {
 		return playAtt;
 	}
