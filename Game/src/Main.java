@@ -9,11 +9,12 @@ public class Main {
 	
 	static Scanner userInput = new Scanner(System.in);
 	
+	public static String cont;
 	public static String charName;
 	public static String yesNo;
 	private static String playAtt;
 	static int fightEnemy;
-	
+	int tutorial = 1;
 	
 	
 	 //Barbarian
@@ -74,25 +75,32 @@ public class Main {
 			
 			
 			
-			
-			if(playAtt.equalsIgnoreCase("Potion") && potionCount > 0) {
+			if (playAtt.equalsIgnoreCase("Potion") || playAtt.equalsIgnoreCase("Hp")) {
 				
 				
-				playHp = playHp + 5; 
-				System.out.println("You decide to quickly use a potion and heal 5 hp.");
-				playChoice = 5;
-				break;
-					
+				if(playAtt.equalsIgnoreCase("Potion") && potionCount > 0) {
+					potionCount = potionCount - 1;
+					playHp = playHp + 5; 
+					System.out.println("You decide to quickly use a potion and heal 5 hp.");
+					playChoice = 5;
+					break;
+						
+				}
+				
+				if(playAtt.equalsIgnoreCase("Potion") && potionCount <= 0) {
+					System.out.println("You do not have any potions!");
+				}
+				
+				if (playAtt.equalsIgnoreCase("hp")) {
+					System.out.println("Your current hp is " + playHp + ". Now, What would you like to do?");
+					 
+				}
+				
+				
+	
+				
 			}
 			
-			if(playAtt.equalsIgnoreCase("Potion") && potionCount <= 0) {
-				System.out.println("You do not have any potions!");
-			}
-			
-			if (playAtt.equalsIgnoreCase("hp")) {
-				System.out.println("Your current hp is " + playHp + ". Now, What would you like to do?");
-				 
-			}
 			
 			
 			else {
@@ -143,9 +151,9 @@ public class Main {
 			
 		}
 		
-		//Dodge
+		//Parry
 		else if(setfite > 92){
-			System.out.println("The barbarian dives out of the way of a possible attack.");
+			System.out.println("The barbarian is expecting an attack. He prepairs to counter!");
 			fightEnemy = 3;
 			
 		}
@@ -289,19 +297,37 @@ public class Main {
 	public void tutorialFight() {
 			
 		
-		while (true) {
+		while (tutorial == 1) {
 		playFight();
 		enemyBar();	
 		playTurnBar();
+			
 		
-			if(playHp <= 0) {
-				System.out.println("Your hp has reached 0. You have faced a terrible fate. Lets give it another shot. Type \"continue\" to try again.");
-				break;
+			while(playHp <= 0) {
+				
+				tutorial = 0;
+				System.out.println("\n\nYour hp has reached 0. You have faced a terrible fate. Lets give it another shot. Type \"continue\" to try again.");
+				playHp = 15;
+					
+				while (userInput.hasNextLine()) {
+						this.setcont(userInput.nextLine());
+						
+							if(cont.equalsIgnoreCase("continue")) {
+							tutorial = 1;
+							System.out.println("Okay " + charName +" lets try this again! Would you like to Slice, Block, Parry, or use a Potion?");
+							break;
+					
+					}
+							else {
+							System.out.println("Type \"continue\" to try again.");		
+					}
+				}
 			}
 		
 			if(hpBar <= 0) {
 				System.out.println("The barbarian falls defeated. Congratulations! You have defeated your first enemy.");
-				break;
+				tutorial = 2;
+				
 			}
 		
 		
@@ -362,15 +388,17 @@ public class Main {
 
 		//Game play Tutorial
 		System.out.println("\n\nWelcome to a world filled of evil, " + charName + ". \nYou will face fierce monsters.\nEquipped with a sword and shield, you will have three options within battle."
-				+ "\nSlice, Block, and Dodge.\nHere comes your first enemy, a ferocious barbarian.\nWhen in battle you can also type \"Hp\" to see your current hp level. (You start with 50)");
+				+ "\nSlice, Block, Parry, or use a Potion.\nHere comes your first enemy, a ferocious barbarian.\nWhen in battle you can also type \"Hp\" to see your current hp level. (You start with 50)");
 		
-		System.out.println("Okay " + charName +" its time to make a battle descicion! Would you like to Slice, Block, or Parry?");
+		System.out.println("Okay " + charName +" its time to make a battle descicion! Would you like to Slice, Block, Parry, or use a Potion?");
 		
 		
 		
 		ranhpBar = ((int )(Math.random() * 25 + 10));
 		hpBar = ranhpBar;
 		tutorialFight();
+		
+		
 		
 		
 		
@@ -384,7 +412,13 @@ public class Main {
 
 	
 	
-
+	public String getcont() {
+		return cont;
+	}
+	
+	public void setcont(String cont) {
+		Main.cont = cont;
+	}
 
 	public String getplayAtt() {
 		return playAtt;
