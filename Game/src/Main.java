@@ -1,5 +1,10 @@
-import java.util.*;
 
+import java.util.*;
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException; 
+import java.lang.Runtime;
 
 
 public class Main {
@@ -306,8 +311,8 @@ public class Main {
 			while(playHp <= 0) {
 				
 				tutorial = 0;
-				System.out.println("\n\nYour hp has reached 0. You have faced a terrible fate. Lets give it another shot. Type \"continue\" to try again.");
-				playHp = 15;
+				System.out.println("\n\n" + charName + " your hp has reached 0. You have faced a terrible fate. Lets give it another shot. Type \"continue\" to try again.");
+				playHp = 15; 
 					
 				while (userInput.hasNextLine()) {
 						this.setcont(userInput.nextLine());
@@ -455,13 +460,12 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-		
+	
 		
 		Main player = new Main();
 		
 		
 		}
-	
 	
 	
 
