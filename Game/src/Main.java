@@ -39,12 +39,17 @@ public class Main {
 	int playHp = 15;
 	int playChoice;
 	int potionCount = 3;
-	
-	
+
+
+
+
 	//Player
 	public void playFight() {
-		
-	
+
+
+
+
+
 	
 	if (userInput.hasNextLine()) {
 		
@@ -64,7 +69,7 @@ public class Main {
 		
 			if (playAtt.equalsIgnoreCase("block")) {
 			
-				System.out.println("You bring up your shield in preperation of an attack.");
+				System.out.println("You bring up your shield in preparation of an attack.");
 				
 				playChoice = 2;
 				
@@ -84,11 +89,25 @@ public class Main {
 				
 				
 				if(playAtt.equalsIgnoreCase("Potion") && potionCount > 0) {
-					potionCount = potionCount - 1;
-					playHp = playHp + 5; 
-					System.out.println("You decide to quickly use a potion and heal 5 hp.");
-					playChoice = 5;
-					break;
+
+					if(playHp == maxPlayHp){
+						System.out.println("Your HP is at max!");
+
+					}
+					else{
+						System.out.println("5 HP has been restored. (Up to your max)");
+						if(playHp + 5 > maxPlayHp) {
+							playHp = maxPlayHp;
+
+						} else {
+
+							playHp += 5;
+						}
+						potionCount = potionCount - 1;
+						playChoice = 5;
+						break;
+					}
+
 						
 				}
 				
@@ -98,32 +117,17 @@ public class Main {
 				
 				if (playAtt.equalsIgnoreCase("hp")) {
 					System.out.println("Your current hp is " + playHp + ". Now, What would you like to do?");
-					 
 				}
 				
-				
-	
-				
 			}
-			
-			
-			
-			else {
+				else {
 				System.out.println("You freeze up at the heat of battle (or just spelled something wrong) is going to cost you!");
 				playChoice = 4;
 				
 				break;
+				}
 			}
-			
-			
-			
 		}
-		
-		
-		
-	}
-	
-	
 	
 	}
 	
@@ -339,14 +343,26 @@ public class Main {
 		}
 		
 	}
-	
+
+	public void levelOne(){
+		System.out.println("----------------------------------------\n---                                 ----\n---            Level One            ----\n---                                 ----\n----------------------------------------");
+		System.out.println("After returning victorious, you head back into the town just to be stopped by a woman looking very worried.\nWoman - \"Please help me! My husband left 4 days ago and has not returned!\"");
+		System.out.println(charName + " - \"Where has he gone? \nWoman - \"I believe he left to the old abandoned mines. Please go find him!\"");
+		System.out.println(charName + " - \"I can't promise I'll bring him back alive, but I promise I'll find out what happened\"");
+		System.out.println("(Press Any Key To Continue)");
+
+
+
+
+	}
 
 	public Main() {
-		
-		
-		
-	
-		
+
+
+
+
+
+
 		System.out.println("Enter Your Hero's Name");
 		
 	
@@ -384,7 +400,7 @@ public class Main {
 				
 				else {
 				
-					System.out.println("I said \"Would you like to begin?\" (resond with yes or no)");
+					System.out.println("I said \"Would you like to begin?\" (respond with yes or no)");
 				
 				}
 			}
@@ -392,30 +408,24 @@ public class Main {
 		}
 
 		//Game play Tutorial
-		System.out.println("\n\nWelcome to a world filled of evil, " + charName + ". \nYou will face fierce monsters.\nEquipped with a sword and shield, you will have three options within battle."
-				+ "\nSlice, Block, Parry, or use a Potion.\nHere comes your first enemy, a ferocious barbarian.\nWhen in battle you can also type \"Hp\" to see your current hp level. (You start with 50)");
+		System.out.println("\n---------------------------------------\n---                                 ---\n---            Tutorial             ---\n---                                 ---\n---------------------------------------");
+
+		System.out.println("\nWelcome to a world filled of evil, " + charName + ". \nYou will face fierce monsters.\nEquipped with a sword and shield, you will have three options within battle."
+				+ "\nSlice, Block, Parry, or use a Potion.\nHere comes your first enemy, a ferocious barbarian.\nWhen in battle you can also type \"HP\" to see your current HP level. (You start with 15)");
 		
-		System.out.println("Okay " + charName +" its time to make a battle descicion! Would you like to Slice, Block, Parry, or use a Potion?");
-		
-		
-		
-		ranhpBar = ((int )(Math.random() * 25 + 10));
-		hpBar = ranhpBar;
-		tutorialFight();
+		System.out.println("Okay " + charName +" its time to make a battle decision! Would you like to Slice, Block, Parry, or use a Potion?");
 		
 		
 		
-		
+//		ranhpBar = ((int )(Math.random() * 25 + 10));
+//		hpBar = ranhpBar;
+//		tutorialFight();
+		levelOne();
+
 		
 	}
 
 
-
-
-	
-
-
-	
 	
 	public String getcont() {
 		return cont;
